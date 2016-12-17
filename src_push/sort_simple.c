@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_simple.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbaldy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/17 16:23:43 by dbaldy            #+#    #+#             */
+/*   Updated: 2016/12/17 19:00:14 by dbaldy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static int	get_index(t_pile *pile, int elem)
@@ -71,10 +83,10 @@ int		sort_simple(t_pile *pile, t_pile *visuel, int *sorted_list)
 	place = (min + pile->token >= pile->count) ? min + pile->token -
 	pile->count : min + pile->token;
 	distance = get_distance(elem, place, pile->count);
-/*	ft_printf("place:%d elem:%d sorted_list[token]:%d distance:%d\n",
+	ft_printf("place:%d elem:%d sorted_list[token]:%d distance:%d\n",
 	place, elem,
 	sorted_list[pile->token], distance);
-*/	if (distance == 0)
+	if (distance == 0)
 		return (1);
 	place_elem(pile, visuel, distance, elem);
 	reorder(pile, visuel, distance);

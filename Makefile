@@ -9,7 +9,7 @@ COMMON = check_arguments.c is_numeric.c main.c init_pile.c \
 
 PSH_SWP = solve.c error.c is_push_swap.c quicksort.c calculate_distance.c \
 	  prepare_for_pivot.c pivot.c roll_pile.c sort_both.c \
-	  sort_simple.c
+	  sort_simple.c reorder_b.c
 
 CHCKR = checker.c ko.c read_input.c execute.c isnt_push_swap.c check_sorted.c
 

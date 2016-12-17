@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbaldy <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/17 16:26:58 by dbaldy            #+#    #+#             */
+/*   Updated: 2016/12/17 18:47:00 by dbaldy           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "common.h"
@@ -26,5 +38,7 @@ int	is_empty(t_pile *pile);
 int	cascade_pivot(t_pile *pile_a, t_pile *pile_b, int *sorted_list);
 int	sort_next_unsorted(t_pile *pile, t_pile *visuel);
 int	is_extremum(t_pile *pile, int index);
+int	reorder_b(t_pile *pile_a, t_pile *pile_b, int elem);
+int	find_index(int elem, t_pile *pile);
 
 #endif
