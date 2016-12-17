@@ -1,21 +1,56 @@
 #include "push_swap.h"
 
+static int	find_place(int elem, t_pile *pile)
+{
+	int	index;
+
+	index = 0;
+	while (index < pile->count)
+	{
+		if (pile->cmp(elem, pile->list[index]))
+			break;
+		index++;
+	}
+	return ((index == 0) ? 0 : index - 1);
+}
+
+static int	is_swap_needed(t_pile *pile)
+{
+	if (pile->count < 2)
+		return (FALSE);
+	return (!pile->cmp(pile->list[0], pile->list[1]));
+}
+
+static int	push_reordered_b(t_pile *pile_a, t_pile *pile_b)
+{
+	int	place;
+	int	sens;
+	int	distance;
+
+	place = find_place(pile_a->list[0], pile_b);
+	distance = get_distance(place, 0, pile_b->count);
+	ft_printf("place: %d distance: %d\n", place, distance);
+	sens = abs(distance);
+	while (sens--)
+	{
+		if (distance < 0)
+			reverse_rotate(pile_b, pile_a, FALSE);
+		else
+			rotate(pile_b, pile_a, FALSE);
+	}
+	push(pile_a, pile_b);
+	return (0);
+	is_swap_needed(pile_a);
+}
+
 static int	sort(t_pile *pile_a, t_pile *pile_b)
 {
-	int	*distance_from_sol;
-	int	*sorted_list;
-	
-	if ((sorted_list = malloc(sizeof(int) * pile_a->count)) == NULL)
-		error(1);
-	int_cpy(sorted_list, pile_a->list, pile_a->count);
-	quicksort(sorted_list, 0, pile_a->count - 1, is_crescent);
-	distance_from_sol = calculate_distance(pile_a->list,
-	sorted_list, pile_a->count);
-	if (prepare_for_pivot(pile_a, pile_b))
-	{
-		pivot(pile_a, pile_b, sorted_list);
-		sort_both(pile_a, pile_b);
-	}
+//	while (sort_simple(pile_a, pile_b, sorted_list))
+//		;
+	while (!is_empty(pile_a))
+		push_reordered_b(pile_a, pile_b);
+	while (!is_empty(pile_b))
+		push(pile_b, pile_a);
 	return (0);
 }
 

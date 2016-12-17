@@ -33,7 +33,7 @@ int	push(t_pile *pile_depart, t_pile *pile_arrival)
 	(pile_arrival->count)++;
 	(pile_depart->count)--;
 	if (is_push_swap())
-		ft_printf("p%c ", pile_arrival->id);
+		ft_printf("p%c\n", pile_arrival->id);
 	if (option_v(FALSE))
 		print_piles(pile_depart, pile_arrival);
 	return (0);

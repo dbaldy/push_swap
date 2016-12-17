@@ -5,10 +5,10 @@ CHECKER = checker
 COMMON = check_arguments.c is_numeric.c main.c init_pile.c \
 	print_pile.c is_int.c destruct_pile.c push.c swap.c extremum.c \
 	int_cpy.c rotate.c reverse_rotate.c check_dubs.c options.c get_next_line.c\
-	free_table.c print_int.c
+	free_table.c print_int.c comparison.c
 
 PSH_SWP = solve.c error.c is_push_swap.c quicksort.c calculate_distance.c \
-	  prepare_for_pivot.c pivot.c roll_pile.c sort_both.c operate.c \
+	  prepare_for_pivot.c pivot.c roll_pile.c sort_both.c \
 	  sort_simple.c
 
 CHCKR = checker.c ko.c read_input.c execute.c isnt_push_swap.c check_sorted.c

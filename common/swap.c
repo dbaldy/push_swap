@@ -6,7 +6,7 @@ int	swap_both(t_pile *pile_a, t_pile *pile_b)
 	swap(pile_b, pile_a, TRUE);
 	if (is_push_swap())
 	{
-		ft_printf("ss ");
+		ft_printf("ss\n");
 		if (option_v(FALSE))
 			print_piles(pile_a, pile_b);
 	}
@@ -22,7 +22,7 @@ int	swap(t_pile *pile, t_pile *visuel, int both)
 	pile->list[1] = swapper;
 	if (!both && is_push_swap())
 	{
-		ft_printf("s%c ", pile->id);	
+		ft_printf("s%c\n", pile->id);	
 		if (option_v(FALSE))
 			print_piles(pile, visuel);
 	}

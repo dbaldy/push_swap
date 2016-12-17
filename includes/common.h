@@ -59,4 +59,8 @@ int	min_table(int *table, int size);
 void	free_table(char **list_operation);
 int	is_push_swap();
 void	print_int(int *list, int count);
+int	get_extremum(t_pile *pile_a, t_pile *pile_b);
+int	is_crescent(int a, int b);
+int	is_descent(int a, int b);
+
 #endif

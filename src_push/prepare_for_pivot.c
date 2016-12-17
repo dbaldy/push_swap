@@ -36,11 +36,6 @@ int	is_distance_unique(t_pile *pile, int *distance, int (*cmp)(int, int))
 	return (TRUE);
 }
 
-static int	is_swap_needed(t_pile *pile)
-{
-	return (pile->list[0] > pile->list[1]) ? TRUE : FALSE;
-}
-
 int		prepare_for_pivot(t_pile *pile_a, t_pile *pile_b)
 {
 	int	distance;
@@ -50,10 +45,12 @@ int		prepare_for_pivot(t_pile *pile_a, t_pile *pile_b)
 		roll_pile(pile_a, pile_b, distance);
 		return (FALSE);
 	}
-	else if (is_swap_needed(pile_a))
+	else if (pile_a->list[0] > pile_a->list[1])
 	{
 		swap(pile_a, pile_b, FALSE);
 		return (prepare_for_pivot(pile_a, pile_b));
 	}
+	if (pile_a->count < 10)
+		return (FALSE);
 	return (TRUE);
 }

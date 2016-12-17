@@ -16,6 +16,22 @@ static int	fill_list(char **argv, int *list)
 	return (TRUE); 
 }
 
+static int	get_extr(t_pile *pile)
+{
+	if (pile->count > 0)
+	{
+		pile->max = max_table(pile->list, pile->count);
+		pile->min = min_table(pile->list, pile->count);
+	}
+	return (0);
+}
+
+int		get_extremum(t_pile *pile_a, t_pile *pile_b)
+{
+	get_extr(pile_a);
+	get_extr(pile_b);
+	return (0);
+}
 
 t_pile		*init_pile(char **argv, int argc, char id)
 {
@@ -31,5 +47,8 @@ t_pile		*init_pile(char **argv, int argc, char id)
 	else
 		pile->count = 0;
 	pile->id = id;
+	pile->token = 0;
+	get_extr(pile);
+	pile->cmp = (id == 'a') ? is_crescent : is_descent;
 	return (pile);
 }

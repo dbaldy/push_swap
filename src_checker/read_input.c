@@ -16,16 +16,15 @@ static void	add_line(char **aggregate, char *line)
 
 char		**read_input(void)
 {
-	char	buf[1024];
+	char	*line;
 	char	*aggregate;
 	char	**output;
 
 	output = NULL;
 	aggregate = NULL;
-	ft_bzero(buf, 1024);
-	while (read(0, buf, 1023) > 0)
+	while (get_next_line(0, &line))
 	{
-		add_line(&aggregate, buf);
+		add_line(&aggregate, line);
 	}
 	if (aggregate != NULL)
 	{

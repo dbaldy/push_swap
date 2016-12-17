@@ -1,19 +1,27 @@
 #include "push_swap.h"
 
-int		get_distance(POINT a, POINT b, int count)
+int		get_distance(POINT depart, POINT arrival, int count)
 {
 	int	distance_up;
 	int	distance_down;
 
-	if (a == b)
+	if (depart == arrival)
 		return (0);
-	distance_up = (a < b) ? b - a : count - a + b;
-	distance_down = (a > b) ? b - a : -a + b - count;	
+	if (depart < arrival)
+	{
+		distance_up = depart - arrival;
+		distance_down = depart + count - arrival;
+	}
+	else
+	{
+		distance_up = - count - arrival + depart;
+		distance_down = -arrival + depart;
+	}
 	return (abs(distance_down) < abs(distance_up)) ? distance_down :
 	distance_up;
 }
 
-static int	*get_delta(int *sorted_list, int *list, int count)
+static int	*get_delta(int *list, int *sorted_list, int count)
 {
 	int	main_index;
 	int	sub_index;
@@ -39,6 +47,6 @@ int		*calculate_distance(int *list, int *sorted_list, int count)
 
 	if ((output = malloc(sizeof(int) * count)) == NULL)
 		error(1);
-	output = get_delta(sorted_list, list, count);
+	output = get_delta(list, sorted_list, count);
 	return (output);
 }

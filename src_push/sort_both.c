@@ -1,21 +1,11 @@
 #include "push_swap.h"
 
-int		is_descent(int a, int b)
-{
-	return (a >= b) ? TRUE : FALSE;
-}
-
-int		is_crescent(int a, int b)
-{
-	return (a <= b) ? TRUE : FALSE;
-}
-
-static int	is_empty(t_pile *pile)
+int		is_empty(t_pile *pile)
 {
 	return (pile->count == 0) ? TRUE : FALSE;
 }
 
-static int	is_sorted(t_pile *pile)
+int		is_sorted(t_pile *pile)
 {
 	int	index;
 	int	(*pilecmp)(int, int);
@@ -35,13 +25,11 @@ static int	is_sorted(t_pile *pile)
 
 int		sort_both(t_pile *pile_a, t_pile *pile_b)
 {
-	if (is_sorted(pile_a))
-		sort_simple(pile_b);
-	else if (is_sorted(pile_b))
-		sort_simple(pile_a);
-	while (!is_sorted(pile_a) && !is_sorted(pile_b))
-		operate(pile_a, pile_b);
-	while (!is_empty(pile_b))
-		push(pile_b, pile_a);
+//	while (!is_sorted(pile_a) && !is_sorted(pile_b))
+//		operate(pile_a, pile_b);
+	while (!is_sorted(pile_a))
+		sort_simple(pile_a, pile_b, NULL);
+//	while (!is_sorted(pile_b))
+//		sort_simple(pile_b, pile_a);
 	return (0);
 }

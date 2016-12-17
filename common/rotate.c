@@ -6,7 +6,7 @@ int	rotate_both(t_pile *pile_a, t_pile *pile_b)
 	rotate(pile_b, pile_a, TRUE);
 	if (is_push_swap())
 	{
-		ft_printf("rr ");
+		ft_printf("rr\n");
 		if (option_v(FALSE))
 			print_piles(pile_a, pile_b);
 	}
@@ -25,7 +25,7 @@ int	rotate(t_pile *pile, t_pile *visuel, int both)
 	}
 	if (!both && is_push_swap())
 	{
-		ft_printf("r%c ", pile->id);
+		ft_printf("r%c\n", pile->id);
 		if (option_v(FALSE))
 			print_piles(pile, visuel);
 	}

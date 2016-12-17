@@ -58,7 +58,6 @@ void		print_piles(t_pile *first_pile, t_pile *second_pile)
 		pile_a = second_pile;
 		pile_b = first_pile;
 	}
-	ft_printf("\n");
 	print_single_pile(pile_a, pile_b);
 	print_single_pile(pile_b, pile_a);
 }
