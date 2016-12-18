@@ -6,7 +6,7 @@
 /*   By: dbaldy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 16:23:43 by dbaldy            #+#    #+#             */
-/*   Updated: 2016/12/17 19:00:14 by dbaldy           ###   ########.fr       */
+/*   Updated: 2016/12/18 16:10:38 by dbaldy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	reorder(t_pile *pile, t_pile *visuel, int distance)
 
 int		sort_simple(t_pile *pile, t_pile *visuel, int *sorted_list)
 {
-	int		min;
+	int		extremum;
 	int		elem;
 	int		distance;
 	int		place;
@@ -78,14 +78,11 @@ int		sort_simple(t_pile *pile, t_pile *visuel, int *sorted_list)
 	pile->token++;
 	if (pile->token >= pile->count)
 		return (0);
-	min = get_index(pile, pile->min);
+	extremum = get_index(pile, pile->id == 'a' ? pile->max : pile->min);
 	elem = get_index(pile, sorted_list[pile->token]);
-	place = (min + pile->token >= pile->count) ? min + pile->token -
-	pile->count : min + pile->token;
+	place = (extremum + pile->token >= pile->count) ? extremum + pile->token -
+	pile->count : extremum + pile->token;
 	distance = get_distance(elem, place, pile->count);
-	ft_printf("place:%d elem:%d sorted_list[token]:%d distance:%d\n",
-	place, elem,
-	sorted_list[pile->token], distance);
 	if (distance == 0)
 		return (1);
 	place_elem(pile, visuel, distance, elem);

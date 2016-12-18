@@ -6,7 +6,7 @@
 /*   By: dbaldy <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 16:20:27 by dbaldy            #+#    #+#             */
-/*   Updated: 2016/12/17 19:03:49 by dbaldy           ###   ########.fr       */
+/*   Updated: 2016/12/18 16:25:12 by dbaldy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,21 @@ static int	reorder_a(t_pile *pile_a, t_pile *pile_b)
 	min = min_table(pile_a->list, pile_a->count);
 	index = find_index(min, pile_a);
 	distance = get_distance(index, 0, pile_a->count);
-	roll_top(pile_a, pile_b, distance);
+	roll_top(pile_a, pile_b, -distance);
 	return (0);
+}
+
+static int	*get_sorted_list(t_pile *pile)
+{
+	int *list_cpy;
+	int	*sorted_list;
+
+	if ((list_cpy = malloc(sizeof(int) * pile->count)) == NULL)
+			error(MEM_ERR);
+	list_cpy = int_cpy(list_cpy, pile->list, pile->count); 
+	sorted_list = quicksort(list_cpy, 0, pile->count - 1,
+			pile->cmp);
+	return (sorted_list);
 }
 
 static int	sort(t_pile *pile_a, t_pile *pile_b)
@@ -41,12 +54,11 @@ static int	sort(t_pile *pile_a, t_pile *pile_b)
 
 	if (pile_a->count < 10)
 	{
-		sorted_list = quicksort(pile_a->list, 0, pile_a->count - 1,
-				pile_a->cmp);
-		print_int(sorted_list, pile_a->count);
+		sorted_list = get_sorted_list(pile_a);
 		while (sort_simple(pile_a, pile_b, sorted_list))
 			;
 		reorder_a(pile_a, pile_b);
+		free(sorted_list);
 	}
 	else if (!is_sorted(pile_a))
 	{
